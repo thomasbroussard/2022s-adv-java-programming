@@ -8,5 +8,9 @@
         <Root level="debug">
             <AppenderRef ref="Out"/>
         </Root>
+
+        <Logger level="INFO" name="org.springframework">
+            <AppenderRef ref="Out" />
+        </Logger>
     </Loggers>
 </Configuration>
