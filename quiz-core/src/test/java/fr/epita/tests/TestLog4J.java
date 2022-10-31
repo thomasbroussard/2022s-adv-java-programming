@@ -11,7 +11,11 @@ public class TestLog4J {
 
     @Test
     public void firstOuptut(){
-        LOGGER.info("test message");
+        LOGGER.trace("trace message"); // most precise
+        LOGGER.debug("debug message");
+        LOGGER.info("info message");
+        LOGGER.warn("warn message");
+        LOGGER.error("error message"); // most general
     }
 
 
