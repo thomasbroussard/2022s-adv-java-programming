@@ -30,15 +30,6 @@ public class TestJdbcConnect {
     @Named("main-test-string")
     private String test;
 
-
-//    public void test(){
-//        Configuration configuration = new Configuration();
-//        String url = configuration.getValue("jdbc.url");
-//        String user = configuration.getValue("jdbc.user");
-//        String password = configuration.getValue("jdbc.pwd");
-//        Connection connection = DriverManager.getConnection(url, user, password);
-//    }
-
     @Test
     public void testWithDI(){
         Assertions.assertNotNull(test);
