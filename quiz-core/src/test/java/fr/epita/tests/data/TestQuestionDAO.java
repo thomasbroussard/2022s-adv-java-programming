@@ -56,6 +56,28 @@ public class TestQuestionDAO {
 
     }
 
+    @Test
+    public void testDAO_Update() throws SQLException {
+        //given
+        QuestionDAO dao = new QuestionDAO(dataSource);
+        Question test = new Question("test");
+        dao.create(test);
+
+        //when
+        String newTitle = "new title";
+        test.setTitle(newTitle);
+        dao.update(test);
+
+
+        //then
+        PreparedStatement verificationStatement = dataSource.getConnection().prepareStatement("SELECT * FROM QUESTION WHERE id=?");
+        verificationStatement.setInt(1, test.getId());
+        ResultSet resultSet = verificationStatement.executeQuery();
+        Assertions.assertTrue(resultSet.next());
+        Assertions.assertEquals(resultSet.getInt("title"), newTitle);
+
+    }
+
 
 
 
