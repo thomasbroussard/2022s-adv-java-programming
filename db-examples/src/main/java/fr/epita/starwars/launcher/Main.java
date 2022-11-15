@@ -1,21 +1,30 @@
-package org.example;
+package fr.epita.starwars.launcher;
 
 import com.sun.net.httpserver.HttpServer;
+import fr.epita.starwars.datamodel.Planet;
+import fr.epita.starwars.services.JsonConversionService;
+import fr.epita.starwars.services.MockPlanetDAO;
+import fr.epita.starwars.services.PlanetDAO;
+import fr.epita.starwars.services.StringConversionService;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.List;
 
 public class Main {
+
+
     public static void main(String[] args) throws IOException {
         long beforeInit = System.currentTimeMillis();
+        PlanetDAO dao = new MockPlanetDAO();
+        StringConversionService stringService = new JsonConversionService();
         HttpServer server = HttpServer.create(new InetSocketAddress("0.0.0.0",8098), 0);
         server.createContext("/test", exchange -> {
             String requestMethod = exchange.getRequestMethod();
             switch (requestMethod) {
                 case "GET":
-                    String test_received = "test received";
+                    List<Planet> planets = dao.search(new Planet());
+                    String test_received = String.valueOf(stringService.convert(planets));
                     exchange.sendResponseHeaders(200, test_received.getBytes().length);
                     exchange.getResponseBody().write(test_received.getBytes());
                     break;

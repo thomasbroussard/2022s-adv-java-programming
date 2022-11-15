@@ -1,7 +1,7 @@
 package fr.epita.tests.data;
 
 import fr.epita.datamodel.Question;
-import fr.epita.services.data.QuestionDAO;
+import fr.epita.datamodel.QuestionDAO;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
