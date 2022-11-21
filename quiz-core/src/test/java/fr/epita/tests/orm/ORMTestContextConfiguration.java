@@ -51,7 +51,7 @@ public class ORMTestContextConfiguration {
         // 3. dialect and other properties
         Properties properties = new Properties();
         properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-        properties.put("hibernate.hbm2ddl.auto", "validate");
+        properties.put("hibernate.hbm2ddl.auto", "create");
         sessionFactoryBean.setHibernateProperties(properties);
         return sessionFactoryBean;
     }
