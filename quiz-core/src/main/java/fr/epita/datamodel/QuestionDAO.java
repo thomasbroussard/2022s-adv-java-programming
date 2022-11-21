@@ -44,6 +44,10 @@ public class QuestionDAO {
     }
 
     public List<Question> search(Question question){
+//        ResultSet resultSet;
+//        while (resultSet.next()){
+//            String title = resultSet.getString(1);
+//        }
         return null;
     }
 }

@@ -1,8 +1,18 @@
 package fr.epita.datamodel;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "QUESTIONS")
 public class Question {
 
+    @Id
+    @Column(name = "Q_ID")
     private int id;
+    @Column(name = "Q_TITLE")
     private String title;
 
     public Question(String title) {
