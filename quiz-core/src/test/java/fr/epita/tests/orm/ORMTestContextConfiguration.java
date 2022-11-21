@@ -1,6 +1,8 @@
 package fr.epita.tests.orm;
 
 
+import fr.epita.datamodel.Question;
+import fr.epita.services.QuestionJPADAO;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -30,7 +32,7 @@ public class ORMTestContextConfiguration {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.h2.Driver");
         dataSource.setUrl("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1");
-//        dataSource.setUrl("jdbc:h2:tcp://localhost/./test");
+       // dataSource.setUrl("jdbc:h2:tcp://localhost/./test");
         dataSource.setPassword("test");
         dataSource.setUsername("sa");
         return dataSource;
@@ -49,8 +51,13 @@ public class ORMTestContextConfiguration {
         // 3. dialect and other properties
         Properties properties = new Properties();
         properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-        properties.put("hibernate.hbm2ddl.auto", "create");
+        properties.put("hibernate.hbm2ddl.auto", "validate");
         sessionFactoryBean.setHibernateProperties(properties);
         return sessionFactoryBean;
+    }
+
+    @Bean(name ="questionJPADAO")
+    public QuestionJPADAO getQuestionJPADAO(@Qualifier("sessionFactory") SessionFactory factory){
+        return new QuestionJPADAO(factory);
     }
 }

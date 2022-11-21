@@ -1,6 +1,7 @@
 package fr.epita.tests.orm;
 
 import fr.epita.datamodel.Question;
+import fr.epita.services.QuestionJPADAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,8 @@ public class TestHibernate {
 
     @Inject
     SessionFactory factory;
+
+
 
     @Test
     public void test(){

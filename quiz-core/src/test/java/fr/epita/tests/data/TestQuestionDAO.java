@@ -1,7 +1,7 @@
 package fr.epita.tests.data;
 
 import fr.epita.datamodel.Question;
-import fr.epita.datamodel.QuestionDAO;
+import fr.epita.services.QuestionDAO;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -74,7 +74,7 @@ public class TestQuestionDAO {
         verificationStatement.setInt(1, test.getId());
         ResultSet resultSet = verificationStatement.executeQuery();
         Assertions.assertTrue(resultSet.next());
-        Assertions.assertEquals(resultSet.getInt("title"), newTitle);
+        Assertions.assertEquals(resultSet.getString("title"), newTitle);
 
     }
 

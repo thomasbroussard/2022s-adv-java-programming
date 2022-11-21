@@ -1,5 +1,6 @@
-package fr.epita.datamodel;
+package fr.epita.services;
 
+import fr.epita.datamodel.Question;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
