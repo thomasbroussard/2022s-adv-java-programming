@@ -13,6 +13,9 @@ public class Question {
     @Column(name = "Q_TITLE")
     private String title;
 
+    protected Question(){
+    }
+
     public Question(String title) {
         this.title = title;
     }
