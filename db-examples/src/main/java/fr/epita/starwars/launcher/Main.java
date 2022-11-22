@@ -2,10 +2,7 @@ package fr.epita.starwars.launcher;
 
 import com.sun.net.httpserver.HttpServer;
 import fr.epita.starwars.datamodel.Planet;
-import fr.epita.starwars.services.JsonConversionService;
-import fr.epita.starwars.services.MockPlanetDAO;
-import fr.epita.starwars.services.PlanetDAO;
-import fr.epita.starwars.services.StringConversionService;
+import fr.epita.starwars.services.*;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -16,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         long beforeInit = System.currentTimeMillis();
-        PlanetDAO dao = new MockPlanetDAO();
+        PlanetDAO dao = new PlanetNeo4JDAO();
         StringConversionService stringService = new JsonConversionService();
         HttpServer server = HttpServer.create(new InetSocketAddress("0.0.0.0",8098), 0);
         server.createContext("/test", exchange -> {
