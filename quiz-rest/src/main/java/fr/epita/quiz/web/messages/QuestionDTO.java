@@ -19,4 +19,12 @@ public class QuestionDTO {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public QuestionDTO(){
+
+    }
+    public QuestionDTO(int id, String title) {
+        this.id = id;
+        this.title = title;
+    }
 }

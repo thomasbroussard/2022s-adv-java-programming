@@ -1,15 +1,13 @@
 package fr.epita.quiz;
 
-import fr.epita.datamodel.Question;
 import fr.epita.quiz.web.data.services.QuizDataService;
 import fr.epita.quiz.web.messages.QuestionDTO;
-import fr.epita.services.QuestionDAO;
+import fr.epita.quiz.web.messages.QuestionListDTO;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import javax.websocket.server.PathParam;
 import java.net.URI;
 
 @RestController
@@ -35,14 +33,15 @@ public class QuizController {
     }
 
 
-    @GetMapping(path="/")
-    public void get(){
-        System.out.println("hello from get!");
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<QuestionListDTO> get(){
+        QuestionListDTO all = this.service.getAll(0);
+        return ResponseEntity.ok(all);
     }
 
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> post(QuestionDTO question){
+    public ResponseEntity<String> post(@RequestBody QuestionDTO question){
         try {
             service.createQuestion(question);
             int id = question.getId();

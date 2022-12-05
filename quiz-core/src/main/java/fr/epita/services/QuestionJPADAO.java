@@ -41,4 +41,10 @@ public class QuestionJPADAO {
         return from_question.list();
     }
 
+
+    public List<Question> getAll() {
+        Session session = this.factory.openSession();
+        Query<Question> from_question = session.createQuery("from Question q", Question.class);
+        return from_question.list();
+    }
 }
