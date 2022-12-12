@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         long beforeInit = System.currentTimeMillis();
-        PlanetDAO dao = new PlanetNeo4JDAO();
+        PlanetDAO dao = new MockPlanetDAO();
         StringConversionService stringService = new JsonConversionService();
         HttpServer server = HttpServer.create(new InetSocketAddress("0.0.0.0",8098), 0);
         server.createContext("/test", exchange -> {
