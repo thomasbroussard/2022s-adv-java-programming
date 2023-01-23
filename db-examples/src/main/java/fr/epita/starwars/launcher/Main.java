@@ -1,5 +1,6 @@
 package fr.epita.starwars.launcher;
 
+import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpServer;
 import fr.epita.starwars.datamodel.Planet;
 import fr.epita.starwars.services.*;
@@ -18,8 +19,11 @@ public class Main {
         HttpServer server = HttpServer.create(new InetSocketAddress("0.0.0.0",8098), 0);
         server.createContext("/test", exchange -> {
             String requestMethod = exchange.getRequestMethod();
+            Headers requestHeaders = exchange.getRequestHeaders();
+            System.out.println(requestHeaders.entrySet());
             switch (requestMethod) {
                 case "GET":
+
                     List<Planet> planets = dao.search(new Planet());
                     String test_received = String.valueOf(stringService.convert(planets));
                     exchange.sendResponseHeaders(200, test_received.getBytes().length);
